@@ -14,8 +14,8 @@ def sqrt(number):
     result = _sqrt(start, guess, end, number)
 
     if result is None:
-        return [None, None]
-    return [-result, result]
+        return (None, None)
+    return (-result, result)
 
 
 def _sqrt(start, mid, end, target):
