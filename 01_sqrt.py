@@ -7,27 +7,43 @@ def sqrt(number):
     Returns:
        int: Floored Square Root
     """
+
     start = 0
     end = number
     guess = (start + end)//2
-    
-    
-def _sqrt(start,mid,end,target):
-    if mid**2 > target:
-        end = mid
-        mid = (start + end)//2
-        return sqrt()
-    elif mid**2<target:
-        if (mid + 1)**2 > target:
-            return mid
-        else:
-            start = guess
-            mid = (start + end)//2
-    else:
-        return mid
+    result = _sqrt(start, guess, end, number)
 
-print ("Pass" if  (3 == sqrt(9)) else "Fail")
-print ("Pass" if  (0 == sqrt(0)) else "Fail")
-print ("Pass" if  (4 == sqrt(16)) else "Fail")
-print ("Pass" if  (1 == sqrt(1)) else "Fail")
-print ("Pass" if  (5 == sqrt(27)) else "Fail")
+    if result is None:
+        return [None,None]
+    return [-result, result]
+
+
+def _sqrt(start, mid, end, target):
+    if target == 0:
+        return 0
+    elif target == 1:
+        return 1
+    elif target < 0:
+        return None
+    else:
+        if mid**2 > target:
+            end = mid
+            mid = (start + end)//2
+            return _sqrt(start, mid, end, target)
+        elif mid**2 < target:
+            if (mid + 1)**2 > target:
+                return mid
+            else:
+                start = mid
+                mid = (start + end)//2
+                return _sqrt(start, mid, end, target)
+        else:
+            return mid
+
+
+cases = [(3, 9), (0, 0), (4, 16), (1, 1), (5, 27),
+         (3037000499, 9223372036854775807), (-3, 9), (-4, 16), (-1, 1), (-5, 27), (6, 42), (None, -4)]
+
+for case in cases:
+    result = sqrt(case[1])
+    print("Pass" if (case[0] == result[0] or case[0] == result[1]) else "Fail")
