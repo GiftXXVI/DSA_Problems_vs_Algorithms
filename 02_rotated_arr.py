@@ -7,28 +7,35 @@ def rotated_array_search(input_list, number):
     Returns:
        int: Index or -1
     """
-    pivot = find_pivot(input_list, 0, len(input_list)-1)
-    print(pivot)
-    pass
+    last = find_pivot(input_list, 0, len(input_list)-1)
+    pivot = last+1
+    index = get_index(number, input_list, pivot)
+    return index
 
 
 def find_pivot(arr, start, end):
     mid = (start+end)//2
-    if len(arr) > 1:
-        if arr[mid] > arr[mid+1]:
-            return mid
-        if arr[start] > arr[mid]:
-            end = mid
-        else:
-            start = mid+1
-        return find_pivot(arr[start:end], start, end)
+    if arr[mid] > arr[mid+1]:
+        return mid
+    if arr[start] > arr[mid]:
+        end = mid
     else:
-        print(arr)
-        return None
+        start = mid+1
+    return find_pivot(arr, start, end)
 
 
-def _get_index():
-    pass
+def get_index(needle, haystack, offset):
+    start = (0 + offset) % offset
+    end = ((len(haystack) - 1) + offset) % offset
+    mid = (start + end)//2
+
+    if haystack[mid] == needle:
+        return mid
+    elif haystack[mid] > needle:
+        start = mid + 1
+    else:
+        end = mid-1
+    return 0
 
 
 def linear_search(input_list, number):
@@ -58,3 +65,4 @@ rotated_array_search([6, 7, 8, 9, 10, 1, 2, 3, 4], 1)
 rotated_array_search([6, 7, 8, 1, 2, 3, 4], 8)
 rotated_array_search([6, 7, 8, 1, 2, 3, 4], 1)
 rotated_array_search([6, 7, 8, 1, 2, 3, 4], 10)
+rotated_array_search([6, 7, 8, 10, 12, 14, 16, 19, 1, 2, 3, 4], 10)
