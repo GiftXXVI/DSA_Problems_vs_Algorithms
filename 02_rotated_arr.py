@@ -7,44 +7,31 @@ def rotated_array_search(input_list, number):
     Returns:
        int: Index or -1
     """
-    last = find_pivot(input_list, 0, len(input_list)-1)
-    pivot = last+1
     start = 0
-    end = len(input_list) - 1
-    index = get_index(number, input_list, pivot, start)
-    return index
+    size = len(input_list)
+    pivot = find_pivot(input_list, start, size-1)
+    print('Pivot:', pivot, input_list[pivot], size)
+    get_index(input_list, pivot, size)
 
 
 def find_pivot(arr, start, end):
-    mid = (start+end)//2
+    mid = (start + end)//2
     if arr[mid] > arr[mid+1]:
         return mid
     if arr[start] > arr[mid]:
         end = mid
     else:
-        start = mid+1
+        start = mid + 1
     return find_pivot(arr, start, end)
 
 
-def get_index(needle, haystack, offset, start, end):
-    start = index_in(start)
-    end = index_in(end)
-    mid = (start + end)//2
+def get_index(input_list, offset, size):
+    for i, v in enumerate(input_list):
+        print(i, index_in(i, offset, size), v)
 
-    if haystack[index_out(mid)] == needle:
-        return index_out(mid)
-    else:
-        if haystack[index_out(mid)] > needle:
-            start = mid + 1
-        else:
-            end = mid - 1
-        return get_index(needle,haystack,offset,index_out(start), index_out(end))
 
-def index_in(input):
-    return (input + offset) % offset
-
-def index_out(input):
-    return (input - offset) % offset
+def index_in(index, offset, size):
+    return (index + (size - offset) - 1) % size
 
 
 def linear_search(input_list, number):
@@ -69,9 +56,7 @@ def test_function(test_case):
 #test_function([[6, 7, 8, 1, 2, 3, 4], 1])
 #test_function([[6, 7, 8, 1, 2, 3, 4], 10])
 
-rotated_array_search([6, 7, 8, 9, 10, 1, 2, 3, 4], 6)
+
 rotated_array_search([6, 7, 8, 9, 10, 1, 2, 3, 4], 1)
 rotated_array_search([6, 7, 8, 1, 2, 3, 4], 8)
-rotated_array_search([6, 7, 8, 1, 2, 3, 4], 1)
-rotated_array_search([6, 7, 8, 1, 2, 3, 4], 10)
-rotated_array_search([6, 7, 8, 10, 12, 14, 16, 19, 1, 2, 3, 4], 10)
+rotated_array_search([6, 7, 8, 1, 2, 3, 4, 5], 8)
