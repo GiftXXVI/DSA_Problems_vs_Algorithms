@@ -10,7 +10,7 @@ def sqrt(number):
 
     start = 0
     end = number
-    guess = (start + end)//2
+    guess = (start + end) // 2
     result = _sqrt(start, guess, end, number)
 
     if result is None:
@@ -28,21 +28,21 @@ def _sqrt(start, mid, end, target):
     else:
         if mid**2 > target:
             end = mid
-            mid = (start + end)//2
+            mid = (start + end) // 2
             return _sqrt(start, mid, end, target)
         elif mid**2 < target:
             if (mid + 1)**2 > target:
                 return mid
             else:
                 start = mid
-                mid = (start + end)//2
+                mid = (start + end) // 2
                 return _sqrt(start, mid, end, target)
         else:
             return mid
 
 
-cases = [(3, 9), (0, 0), (4, 16), (1, 1), (5, 27),
-         (3037000499, 9223372036854775807), (-3, 9), (-4, 16), (-1, 1), (-5, 27), (6, 42), (None, -4)]
+cases = [(3, 9), (0, 0), (4, 16), (1, 1), (5, 27), (3037000499, 9223372036854775807),
+         (-3, 9), (-4, 16), (-1, 1), (-5, 27), (6, 42), (None, -4)]
 
 for case in cases:
     result = sqrt(case[1])
