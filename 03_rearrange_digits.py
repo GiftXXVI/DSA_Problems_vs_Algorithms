@@ -1,5 +1,17 @@
+def get_iparent(index):
+    return int((index - 1) / 2)
+
+
+def get_ileftchild(index):
+    return 2 * index + 1
+
+
+def get_irightchild(index):
+    return 2 * index + 2
+
+
 def heapsort(input, size):
-    heapify(input, size)
+    input = heapify(input, size)
     end = size - 1
     while end > 0:
         temp = input[end]
@@ -7,17 +19,36 @@ def heapsort(input, size):
         input[end] = temp
         end -= 1
         sift_down(input, 0, end)
+    return input
 
 
 def heapify(input, size):
-    start = ((size - 1) - 1) / 2
-    while start>0:
-        
-    pass
+    end = size - 1
+    start = get_iparent(end)
+    while start >= 0:
+        input = sift_down(input, start, end)
+        start -= 1
+    return input
 
 
-def sift_down():
-    pass
+def sift_down(input, start, end):
+    root = start
+    while get_ileftchild(root) <= end:
+        child = get_ileftchild(root)
+        swap = root
+
+        if input[swap] < input[child]:
+            swap = child
+        if child + 1 <= end and input[swap] < input[child + 1]:
+            swap = child + 1
+        if swap == root:
+            return
+        else:
+            temp = input[root]
+            input[swap] = input[root]
+            input[root] = temp
+            root = swap
+    return input
 
 
 def rearrange_digits(input_list):
@@ -51,4 +82,4 @@ def test_function(test_case):
 #test_case = [[4, 6, 2, 5, 9, 8], [964, 852]]
 #rearrange_digits([4, 6, 2, 5, 9, 8])
 case = [4, 6, 2, 5, 9, 8]
-print(heapsort(case))
+print(heapsort(case, len(case)))
