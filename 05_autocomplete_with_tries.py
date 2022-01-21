@@ -10,9 +10,12 @@ class TrieNode:
         # Add a child node in this Trie
         self.children[TrieNode.map_chr(char)] = TrieNode(value=char)
 
-    def suffixes(self, char):
-        
-        pass
+    def suffixes(self, suffix=''):
+        return self._suffixes(suffixes=list())
+
+    def _suffixes(self, suffixes):
+        if self.is_terminal:
+            suffixes.append(self.value)
 
     @staticmethod
     def map_chr(char):
