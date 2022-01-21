@@ -11,11 +11,26 @@ class TrieNode:
         self.children[TrieNode.map_chr(char)] = TrieNode(value=char)
 
     def suffixes(self, suffix=''):
-        return self._suffixes(suffixes=list())
+        suffixes = self._suffixes(suffix)
+        if len(suffixes) > 0:
+            if suffixes[0] == self.value:
+                del suffixes[0]
+            for i in range(len(suffixes)):
+                if suffixes[i][0] == self.value:
+                    suffixes[i] = suffixes[i][1:]
+        return suffixes
 
-    def _suffixes(self, suffixes):
+    def _suffixes(self, suffix):
+        suffix = f'{suffix}{self.value}'
+        suffixes = list()
         if self.is_terminal:
-            suffixes.append(self.value)
+            suffixes.append(suffix)
+
+        for child in self.children:
+            if child is not None:
+                suffixes.extend(child._suffixes(suffix))
+
+        return suffixes
 
     @staticmethod
     def map_chr(char):
@@ -47,8 +62,9 @@ class TrieNode:
             'y': 24,
             'z': 25}
         return chr_map[char]
-# The Trie itself containing the root node and insert/find functions
 
+
+# The Trie itself containing the root node and insert/find functions
 
 class Trie:
     def __init__(self):
@@ -68,6 +84,15 @@ class Trie:
 
     def find(self, prefix):
         # Find the Trie node that represents this prefix
+        node = self.root
+        for i, v in enumerate(prefix):
+            map_index = TrieNode.map_chr(v)
+            if node.children[map_index] is None:
+                return None
+            node = node.children[map_index]
+        return node
+
+    def contains(self, prefix):
         node = self.root
         for i, v in enumerate(prefix):
             map_index = TrieNode.map_chr(v)
@@ -92,5 +117,8 @@ for word in wordList:
 cases = ['function', 'funk', 'protagonist', 'tripod', 'fun', 'func']
 print('In Trie:', wordList)
 for case in cases:
-    print(case, trie.find(case))
+    node = trie.find(case)
+    print(case, node)
+    if node:
+        print(case, node.suffixes())
 # https://en.wikipedia.org/wiki/Trie
