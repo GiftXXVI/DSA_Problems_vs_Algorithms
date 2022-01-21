@@ -44,6 +44,11 @@ def _sqrt(start, mid, end, target):
 cases = [(3, 9), (0, 0), (4, 16), (1, 1), (5, 27), (3037000499, 9223372036854775807),
          (-3, 9), (-4, 16), (-1, 1), (-5, 27), (6, 42), (None, -4)]
 
-for case in cases:
+
+def test_function(case):
     result = sqrt(case[1])
     print("Pass" if (case[0] == result[0] or case[0] == result[1]) else "Fail")
+
+
+for case in cases:
+    test_function(case)
