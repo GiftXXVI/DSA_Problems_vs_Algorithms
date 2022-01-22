@@ -10,9 +10,7 @@ class RouteTrie:
         # Make sure you assign the handler to only the leaf (deepest) node of
         # this path
         node = self.root
-        sections = path.split('/')
-        print(sections)
-        for index, section in enumerate(sections):
+        for index, section in enumerate(path):
             if section not in node.children:
                 node.insert(section)
             node = node.children[section]
@@ -23,8 +21,7 @@ class RouteTrie:
         # Return the handler for a match, or None for no match
 
         node = self.root
-        sections = path.split('/')
-        for index, section in enumerate(sections):
+        for index, section in enumerate(path):
             if section not in node.children:
                 return None
             node = node.children[section]
@@ -49,6 +46,43 @@ class RouteTrieNode:
 
     def __repr__(self):
         return f'<RouteTrieNode value:{self.value},is_terminal:{self.is_terminal}>'
+
+
+# The Router class will wrap the Trie and handle
+
+
+class Router:
+    def __init__(self):
+        # Create a new RouteTrie for holding our routes
+        # You could also add a handler for 404 page not found responses as
+        # well!
+        self.trie = RouteTrie()
+
+    def add_handler(self, path):
+        # Add a handler for a path
+        # You will need to split the path and pass the pass parts
+        # as a list to the RouteTrie
+        trie.insert(self.split_path(path))
+
+    def lookup(self, path):
+        # lookup path (by parts) and return the associated handler
+        # you can return None if it's not found or
+        # return the "not found" handler if you added one
+        # bonus points if a path works with and without a trailing slash
+        # e.g. /about and /about/ both return the /about handler
+        trie.find(self.split_path(path))
+
+    def split_path(self, path):
+        # you need to split the path into parts for
+        # both the add_handler and loopup functions,
+        # so it should be placed in a function here
+        return path.split('/')
+
+        # Here are some test cases and expected outputs you can use to test
+        # your implementation
+
+        # create the router and add a route
+        # remove the 'not found handler' if you did not implement this
 
 
 cases = [
@@ -84,43 +118,6 @@ def test_function(test_case):
 
 for case in cases:
     test_function(case)
-
-# The Router class will wrap the Trie and handle
-
-
-class Router:
-    def __init__(self):
-        # Create a new RouteTrie for holding our routes
-        # You could also add a handler for 404 page not found responses as
-        # well!
-        pass
-
-    def add_handler(self):
-        # Add a handler for a path
-        # You will need to split the path and pass the pass parts
-        # as a list to the RouteTrie
-        pass
-
-    def lookup(self):
-        # lookup path (by parts) and return the associated handler
-        # you can return None if it's not found or
-        # return the "not found" handler if you added one
-        # bonus points if a path works with and without a trailing slash
-        # e.g. /about and /about/ both return the /about handler
-        pass
-
-    def split_path(self):
-        # you need to split the path into parts for
-        # both the add_handler and loopup functions,
-        # so it should be placed in a function here
-
-        # Here are some test cases and expected outputs you can use to test
-        # your implementation
-
-        # create the router and add a route
-        # remove the 'not found handler' if you did not implement this
-        pass
-
 
 '''
 router = Router("root handler", "not found handler")
