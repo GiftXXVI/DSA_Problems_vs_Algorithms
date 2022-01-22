@@ -11,12 +11,12 @@ class RouteTrie:
         # this path
         node = self.root
         sections = path.split('/')
+        print(sections)
         for index, section in enumerate(sections):
             if section not in node.children:
-                node.children[section] = section
+                node.insert(section)
             node = node.children[section]
-            if index == len(sections):
-                node.is_terminal = True
+        node.is_terminal = True
 
     def find(self, path):
         # Starting at the root, navigate the Trie to find a match for this path
@@ -43,13 +43,51 @@ class RouteTrieNode:
         self.value = value
         self.children = dict()
 
-    def insert(self, value, terminal):
+    def insert(self, value):
         # Insert the node as before
-        self.children[value] = RouteTrieNode(
-            value=value, terminal=terminal)
+        self.children[value] = RouteTrieNode(value=value)
 
+    def __repr__(self):
+        return f'<RouteTrieNode value:{self.value},is_terminal:{self.is_terminal}>'
+
+
+cases = [
+    '/',
+    '/features',
+    '/news',
+    '/news/science',
+    '/news/science/12201-tonga-volcano-erupts',
+    '/news/science/12301-james-webb-launches',
+    '/news/sports',
+    '/news/technology',
+    '/news/technology/12341-ai-fighter-pilots',
+    '/kb/engineering',
+    '/kb/user',
+    '/blog',
+    '/locations/malawi/lilongwe',
+    '/locations/malawi/blantyre',
+    '/reviews',
+    '/contacts',
+    '/about']
+
+trie = RouteTrie()
+for case in cases:
+    trie.insert(case)
+
+cases.extend(['/cache', '/downloads', '/videos', '/livestream'])
+
+
+def test_function(test_case):
+    node = trie.find(test_case)
+    print(test_case, node)
+
+
+for case in cases:
+    test_function(case)
 
 # The Router class will wrap the Trie and handle
+
+
 class Router:
     def __init__(self):
         # Create a new RouteTrie for holding our routes
@@ -84,6 +122,7 @@ class Router:
         pass
 
 
+'''
 router = Router("root handler", "not found handler")
 router.add_handler("/home/about", "about handler")  # add a route
 
@@ -96,3 +135,4 @@ print(router.lookup("/home/about"))  # should print 'about handler'
 print(router.lookup("/home/about/"))
 # should print 'not found handler' or None if you did not implement one
 print(router.lookup("/home/about/me"))
+'''

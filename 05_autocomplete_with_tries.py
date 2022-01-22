@@ -114,11 +114,28 @@ trie = Trie()
 for word in wordList:
     trie.insert(word)
 
-cases = ['function', 'funk', 'protagonist', 'tripod', 'fun', 'func']
+cases = [
+    'function',
+    'funk',
+    'protagonist',
+    'tripod',
+    'fun',
+    'func',
+    'a',
+    'ant',
+    'tri']
 print('In Trie:', wordList)
-for case in cases:
-    node = trie.find(case)
-    print(case, node)
+
+
+def test_function(test_case):
+    node = trie.find(test_case)
+    print(test_case, node)
     if node:
-        print(case, node.suffixes())
+        print(test_case, node.suffixes())
+
+
 # https://en.wikipedia.org/wiki/Trie
+
+
+for case in cases:
+    test_function(case)
