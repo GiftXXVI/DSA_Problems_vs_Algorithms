@@ -23,7 +23,7 @@ cases = [
     [0],
     [i for i in range(0, 10)],
     [i**2 for i in range(0, 100)],
-    [random.randrange(0, 100) for _ in range(1000)]
+    [random.randrange(0, 100) for _ in range(10000)]
 ]
 
 
