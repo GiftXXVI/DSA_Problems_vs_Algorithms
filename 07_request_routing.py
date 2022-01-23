@@ -21,7 +21,7 @@ class RouteTrie:
         # Make sure you assign the handler to only the leaf (deepest) node of
         # this path
         node = self.root
-        if self.find(path) is not None:
+        if self.find(path) is None:
             for index, section in enumerate(path):
                 if section not in node.children:
                     node.insert(section)
@@ -37,7 +37,6 @@ class RouteTrie:
         if path[0] == node.value:
             return node
         for index, section in enumerate(path):
-            print(node.value, node)
             if section not in node.children:
                 return None
             node = node.children[section]
@@ -92,9 +91,8 @@ class Router:
         # e.g. /about and /about/ both return the /about handler
         node = self.trie.find(self.split_path(path))
         if node is None:
-            print(self.error_handler)
-        else:
-            print(node.handler)
+            return self.error_handler
+        return node.handler
 
     def split_path(self, path):
         # you need to split the path into parts for
@@ -151,6 +149,7 @@ router.add_handler("/home/about", "about handler")  # add a route
 # some lookups with the expected output
 print(router.lookup("/"))  # should print 'root handler'
 # should print 'not found handler' or None if you did not implement one
+
 print(router.lookup("/home"))
 print(router.lookup("/home/about"))  # should print 'about handler'
 # should print 'about handler' or None if you did not handle trailing slashes
