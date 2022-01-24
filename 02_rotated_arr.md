@@ -1,4 +1,4 @@
-Problem 2: Search in a Rotated Sorted Array
+# Problem 2: Search in a Rotated Sorted Array
 ## Overview
 This solution uses 2 binary search algorithms. The first binary search is used to find the pivot index (the point where the largest item and smallest item are located next to each other) and uses this to set an offset. The second algorithm uses the offset as an adjustment variable into a translation function.
 
