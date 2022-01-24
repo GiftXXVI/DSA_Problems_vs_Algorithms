@@ -1,3 +1,5 @@
+# Utilizes HeapSort pseudocode from https://en.wikipedia.org/wiki/Heapsort
+
 def get_iparent(index):
     return int((index - 1) / 2)
 
@@ -192,4 +194,3 @@ cases = [[[1, 1, 2], [21, 1]], [[1, 2, 3, 4, 5], [
 for case in cases:
     test_function(case)
 
-# https://en.wikipedia.org/wiki/Heapsort

@@ -1,3 +1,5 @@
+# Utilizes Dutch National Flag pseudocode from https://en.wikipedia.org/wiki/Dutch_national_flag_problem
+
 def sort_012(input_list):
     """
     Given an input array consisting on only 0, 1, and 2, sort the array in a single traversal.
@@ -49,5 +51,3 @@ cases = [
 
 for case in cases:
     test_function(case)
-
-# https://en.wikipedia.org/wiki/Dutch_national_flag_problem
