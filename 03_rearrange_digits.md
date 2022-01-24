@@ -1,4 +1,4 @@
-# Problem 3:Rearrange Array Elements
+# Problem 3: Rearrange Array Elements
 ## Overview
 This algorithm uses a heapsort to sort the items of the array in descending order, then pops the largest element from the sorted array and alternates between the 2 arrays, inserting the popped item into the current array.
 
