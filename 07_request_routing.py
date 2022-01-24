@@ -98,6 +98,8 @@ class Router:
         # you need to split the path into parts for
         # both the add_handler and loopup functions,
         # so it should be placed in a function here
+        if path[len(path) - 1] == '/':
+            path = path[:len(path) - 1]
         return path.split('/')
 
         # Here are some test cases and expected outputs you can use to test
@@ -107,44 +109,28 @@ class Router:
         # remove the 'not found handler' if you did not implement this
 
 
-'''
-cases = [
-    '/',
-    '/features',
-    '/news',
-    '/news/science',
-    '/news/science/12201-tonga-volcano-erupts',
-    '/news/science/12301-james-webb-launches',
-    '/news/sports',
-    '/news/technology',
-    '/news/technology/12341-ai-fighter-pilots',
-    '/kb/engineering',
-    '/kb/user',
-    '/blog',
-    '/locations/malawi/lilongwe',
-    '/locations/malawi/blantyre',
-    '/reviews',
-    '/contacts',
-    '/about']
-
-trie = RouteTrie()
-for case in cases:
-    trie.insert(case)
-
-cases.extend(['/cache', '/downloads', '/videos', '/livestream'])
-
-
-def test_function(test_case):
-    node = trie.find(test_case)
-    print(test_case, node)
-
-
-for case in cases:
-    test_function(case)
-'''
-
 router = Router("root handler", "not found handler")
-router.add_handler("/home/about", "about handler")  # add a route
+cases = [
+    ('/home/about', 'about handler'),
+    ('/home/features', 'features handler'),
+    ('/home/news', 'news handler'),
+    ('/home/news/science', 'science handler'),
+    ('/home/news/science/12201-tonga-volcano-erupts', 'tonga volcano handler'),
+    ('/home/news/science/12301-james-webb-launches', 'james webb launch handler'),
+    ('/home/news/sports', 'sport'),
+    ('/home/news/technology', 'technology handler'),
+    ('/home/news/technology/12341-ai-fighter-pilots', 'ai fighter pilots handler'),
+    ('/home/kb/engineers', 'engineers kb handler'),
+    ('/home/kb/users', 'users kb handler'),
+    ('/home/blog/77091-monday-motivation-100', 'monday motivation 100 handler'),
+    ('/home/blog/93803-boosting-performance-in-short-time-101', 'performance 101 handler'),
+    ('/home/locations/malawi/lilongwe', 'lilongwe handler'),
+    ('/home/locations/malawi/blantyre', 'blantyre handler'),
+    ('/home/reviews', 'reviews handler'),
+    ('/home/contacts', 'contacts handler'),
+    ('/home/about', 'about handler')]
+for case in cases:
+    router.add_handler(case[0], case[1])  # add a route
 
 # some lookups with the expected output
 print(router.lookup("/"))  # should print 'root handler'
