@@ -11,24 +11,24 @@ class TrieNode:
         self.children[TrieNode.map_chr(char)] = TrieNode(value=char)
 
     def suffixes(self, suffix=''):
-        suffixes = self._suffixes(suffix)
+        counter = 0
+        suffixes = self._suffixes(suffix, counter)
         if len(suffixes) > 0:
             if suffixes[0] == self.value:
                 del suffixes[0]
-            for i in range(len(suffixes)):
-                if suffixes[i][0] == self.value:
-                    suffixes[i] = suffixes[i][1:]
         return suffixes
 
-    def _suffixes(self, suffix):
-        suffix = f'{suffix}{self.value}'
+    def _suffixes(self, suffix, counter):
+        if counter > 0:
+            suffix = f'{suffix}{self.value}'
         suffixes = list()
         if self.is_terminal:
             suffixes.append(suffix)
 
         for child in self.children:
             if child is not None:
-                suffixes.extend(child._suffixes(suffix))
+                counter += 1
+                suffixes.extend(child._suffixes(suffix, counter))
 
         return suffixes
 
@@ -74,13 +74,14 @@ class Trie:
     def insert(self, word):
         # Add a word to the Trie
         node = self.root
-        for i, v in enumerate(word):
-            map_index = TrieNode.map_chr(v)
-            if node.children[map_index] is None:
-                node.insert(word[i])
-            node = node.children[map_index]
-            if i == len(word) - 1:
-                node.is_terminal = True
+        if not self.contains(word):
+            for i, v in enumerate(word):
+                map_index = TrieNode.map_chr(v)
+                if node.children[map_index] is None:
+                    node.insert(word[i])
+                node = node.children[map_index]
+                if i == len(word) - 1:
+                    node.is_terminal = True
 
     def find(self, prefix):
         # Find the Trie node that represents this prefix
