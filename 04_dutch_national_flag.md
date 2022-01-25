@@ -1,6 +1,6 @@
 # Problem 4: Dutch National Flag Problem
 
-## Overview
+## Data Structures
 
 The only data structure used in this solution is the provided array. This is in-line with the requirement to perform an in place sort of the provided array.
 

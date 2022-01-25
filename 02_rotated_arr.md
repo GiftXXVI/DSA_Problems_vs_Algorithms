@@ -1,6 +1,6 @@
 # Problem 2: Search in a Rotated Sorted Array
 
-## Overview
+## Data Structures
 
 This solution uses a recursive Binary Search to find the pivot and then find the index of the search paramaeter. The binary search algorithm was chosen because it has the desirable time complexity of O(log(n)).
 

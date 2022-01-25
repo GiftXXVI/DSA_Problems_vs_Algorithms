@@ -1,6 +1,6 @@
 # Problem 5: Autocomplete with Tries
 
-## Overview
+## Data Structures
 
 This solution utilizes a Trie data structure as prescribed.
 

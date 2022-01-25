@@ -1,6 +1,6 @@
 # Problem 1: Finding the Square Root of an Integer
 
-## Overview
+## Data Structures
 
 This solution utilises a recursive binary search algorithm to find the largest number whose square is less than or equal to the provided input. The binary search algorithm was selected because of its desirable time complexity of O(log(n)).
 

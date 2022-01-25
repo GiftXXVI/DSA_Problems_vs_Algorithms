@@ -1,6 +1,6 @@
 # Problem 6: Unsorted Integer Array
 
-## Overview
+## Data Structures
 
 This algorithm performs an in-place search of the array and does not create any additional data structures.
 

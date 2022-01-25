@@ -1,6 +1,6 @@
 # Problem 3: Rearrange Array Elements
 
-## Overview
+## Data Structures
 
 The heap data structure and the heapsort algorithm were selected because they are able to sort the array with a time complexity of O(n) which is better than the O(n log(n)) time complexity required for this problem.
 
