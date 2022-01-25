@@ -7,6 +7,8 @@ def rotated_array_search(input_list, number):
     Returns:
        int: Index or -1
     """
+    if input_list is None or number is None:
+        return -1
     start = 0
     size = len(input_list)
     pivot = find_pivot(input_list, start, size - 1, size)
@@ -82,7 +84,9 @@ cases = [[[6, 7, 8, 9, 10, 1, 2, 3, 4], 6],
          [[6, 7, 8, 1, 2, 3, 4], 1],
          [[6, 7, 8, 1, 2, 3, 4], 10],
          [[1], 1],
+         # empty case, return: -1, output: Pass
          [[], 1],
+         # unusually large case, return: 3355028, output: Pass
          [[5253910,
            5256135,
            5280283,
