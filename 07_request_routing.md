@@ -28,6 +28,12 @@ The split path function uses the string split method, which has a time complexit
 
 ### add_handler
 
+The space complexity of insert is O(n) where n is the size of the input string since it creates a node for each segment of the path.
+
 ### lookup
 
+This method has a space complexity of O(1) since it does not require any extra space to perform a search.
+
 ### split_path
+
+split_path does not create an additional space during the operation.
