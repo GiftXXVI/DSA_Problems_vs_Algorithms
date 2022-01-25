@@ -7,7 +7,8 @@ def sqrt(number):
     Returns:
        int: Floored Square Root
     """
-
+    if number is None:
+        return (None, None)
     start = 0
     end = number
     guess = (start + end) // 2
@@ -41,7 +42,10 @@ def _sqrt(start, mid, end, target):
             return mid
 
 
-cases = [(3, 9), (0, 0), (4, 16), (1, 1), (5, 27), (3037000499, 9223372036854775807),
+cases = [(None, None),  # null case, output: (None,None)
+         (3, 9), (0, 0), (4, 16), (1, 1), (5, 27),
+         # extremely large case, output: (-3037000499,3037000499)
+         (3037000499, 9223372036854775807),
          (-3, 9), (-4, 16), (-1, 1), (-5, 27), (6, 42), (None, -4)]
 
 
