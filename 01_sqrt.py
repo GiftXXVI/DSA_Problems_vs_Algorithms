@@ -44,8 +44,8 @@ def _sqrt(start, mid, end, target):
 
 cases = [(None, None),  # null case, return: (None,None), output:Pass
          (3, 9), (0, 0), (4, 16), (1, 1), (5, 27),
-         # extremely large case, return: (-3037000499,3037000499), output: Pass
          (3037000499, 9223372036854775807),
+         # extremely large case, return: (-3037000499,3037000499), output: Pass
          (-3, 9), (-4, 16), (-1, 1), (-5, 27), (6, 42), (None, -4)]
 
 

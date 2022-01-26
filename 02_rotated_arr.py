@@ -84,9 +84,8 @@ cases = [[[6, 7, 8, 9, 10, 1, 2, 3, 4], 6],
          [[6, 7, 8, 1, 2, 3, 4], 1],
          [[6, 7, 8, 1, 2, 3, 4], 10],
          [[1], 1],
-         # empty case, return: -1, output: Pass
          [[], 1],
-         # unusually large case, return: 3355028, output: Pass
+         # empty case, return: -1, output: Pass
          [[5253910,
            5256135,
            5280283,
@@ -1087,7 +1086,9 @@ cases = [[[6, 7, 8, 9, 10, 1, 2, 3, 4], 6],
            5217902,
            5223733,
            5236495],
-          3355028]]
+          3355028]
+         # unusually large case, return: 3355028, output: Pass
+         ]
 
 for case in cases:
     test_function(case)

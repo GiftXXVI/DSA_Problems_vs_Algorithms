@@ -1,4 +1,7 @@
-# Utilizes Dutch National Flag pseudocode from https://en.wikipedia.org/wiki/Dutch_national_flag_problem
+# Utilizes Dutch National Flag pseudocode from
+# https://en.wikipedia.org/wiki/Dutch_national_flag_problem
+from random import randrange
+
 
 def sort_012(input_list):
     """
@@ -41,12 +44,15 @@ def test_function(test_case):
 
 
 cases = [
-    [],
+    [],  # empty case, return [], output: [], Pass
     [0],
     [1, 0],
     [0, 0, 2, 2, 2, 1, 1, 1, 2, 0, 2],
     [2, 1, 2, 0, 0, 2, 1, 0, 1, 0, 0, 2, 2, 2, 1, 2, 0, 0, 0, 2, 1, 0, 2, 0, 0, 1],
-    [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2]
+    [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [randrange(0, 3) for _ in range(10000)]
+    # unusually large case, return: sorted 10000 element array with variable
+    # composition of 0s,1s and 2s, output: sorted array, Pass
 ]
 
 for case in cases:

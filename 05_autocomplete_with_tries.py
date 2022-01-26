@@ -85,6 +85,8 @@ class Trie:
 
     def find(self, prefix):
         # Find the Trie node that represents this prefix
+        if prefix is None or len(prefix.strip()) == 0:
+            return None
         node = self.root
         for i, v in enumerate(prefix):
             map_index = TrieNode.map_chr(v)
@@ -124,13 +126,15 @@ cases = [
     'func',
     'a',
     'ant',
-    'tri']
+    'tri',
+    '',  # empty case
+    None  # null case
+]
 print('In Trie:', wordList)
 
 
 def test_function(test_case):
     node = trie.find(test_case)
-    print(test_case, node)
     if node:
         print(test_case, node.suffixes())
 
