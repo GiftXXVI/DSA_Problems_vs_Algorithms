@@ -81,7 +81,8 @@ class Router:
         # Add a handler for a path
         # You will need to split the path and pass the pass parts
         # as a list to the RouteTrie
-        self.trie.insert(self.split_path(path), handler)
+        if self.lookup(path) == self.error_handler:
+            self.trie.insert(self.split_path(path), handler)
 
     def lookup(self, path):
         # lookup path (by parts) and return the associated handler
@@ -89,6 +90,8 @@ class Router:
         # return the "not found" handler if you added one
         # bonus points if a path works with and without a trailing slash
         # e.g. /about and /about/ both return the /about handler
+        if path is None or len(path) == 0:
+            return self.error_handler
         node = self.trie.find(self.split_path(path))
         if node is None:
             return self.error_handler
@@ -123,7 +126,8 @@ cases = [
     ('/home/kb/engineers', 'engineers kb handler'),
     ('/home/kb/users', 'users kb handler'),
     ('/home/blog/77091-monday-motivation-100', 'monday motivation 100 handler'),
-    ('/home/blog/93803-boosting-performance-in-short-time-101', 'performance 101 handler'),
+    ('/home/blog/93803-boosting-performance-in-short-time-101',
+     'performance 101 handler'),
     ('/home/locations/malawi/lilongwe', 'lilongwe handler'),
     ('/home/locations/malawi/blantyre', 'blantyre handler'),
     ('/home/reviews', 'reviews handler'),
@@ -142,3 +146,6 @@ print(router.lookup("/home/about"))  # should print 'about handler'
 print(router.lookup("/home/about/"))
 # should print 'not found handler' or None if you did not implement one
 print(router.lookup("/home/about/me"))
+
+print(router.lookup(""))  # empty case, return and print 404: not found handler
+print(router.lookup(None))  # null case, return and print 404: not found handler

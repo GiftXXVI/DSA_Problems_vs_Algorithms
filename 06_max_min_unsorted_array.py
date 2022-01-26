@@ -1,3 +1,6 @@
+# referred to
+# https://stackoverflow.com/questions/7604966/maximum-and-minimum-values-for-ints
+# for sys.minsize,sys.maxsize
 import random
 import sys
 
@@ -9,6 +12,8 @@ def get_min_max(ints):
     Args:
        ints(list): list of integers containing one or more integers
     """
+    if ints == [None]:
+        return None, None
     min = sys.maxsize
     max = -sys.maxsize - 1
     for i in ints:
@@ -20,10 +25,12 @@ def get_min_max(ints):
 
 
 cases = [
+    [None],  # null case, return: (None,None), print: Pass
     [0],
     [i for i in range(0, 10)],
     [i**2 for i in range(0, 100)],
     [random.randrange(0, 100) for _ in range(10000)]
+    # unusually large case, return min,max tuple, output: Pass
 ]
 
 
@@ -34,5 +41,3 @@ def test_function(case):
 for case in cases:
     random.shuffle(case)
     test_function(case)
-
-# https://stackoverflow.com/questions/7604966/maximum-and-minimum-values-for-ints
