@@ -10,9 +10,9 @@ The heap sort implementation is an implementation of the pseudocode found at [He
 
 The heapsort is followed by loop that runs for as long as the sorted array has an element to pop. The time complexity of this algorithm is also O(n) as the number of iterations depends on the size of the input array.
 
-The final step is to join the characters in the 2 arrays arrays and convert them to integers. The join has a time complexity of O(n) where n is the size of the input array. (This is O(n+m) where n and m are the sizes of the 2 input arrays, approximated to O(2n) then to O(n)).
+The final step is to join the characters in the 2 arrays arrays and convert them to integers. The join has a time complexity of O(n) where n is the size of the input array. (This is O(n+m) [where n and m are the sizes of the 2 input arrays and n is greater than or equal to m], approximated to O(2n) then to O(n)).
 
-Overall, the time complexity of this algorithm is O(n) since there is no higher order complexity and the operations above run sequentially with no nested operations.
+Overall, the time complexity of this algorithm is O(n) since it consists of sequential operations that have a time comlplexity of O(n).
 
 ## Space Complexity
 

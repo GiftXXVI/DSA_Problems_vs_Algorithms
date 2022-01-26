@@ -8,7 +8,7 @@ This solution utilises a recursive binary search algorithm to find the largest n
 
 ## Time Complexity
 
-The algorithm's run time depends on the magnitude of the input number. However, because the value calculated approaches the solution in increments of x^2, it eliminates all possible solution values between (x-1)^2 and x^2 between each call. In addition, the algorithm utilises the binary search algorithm to eliminate values of x that are greater than (or less than) the current mid. Thus this the algorithm's time complexity is O(log(n)) where n is the input number.
+The algorithm utilises the binary search algorithm to eliminate values of x that are greater than (or less than) the current mid and compares the value of their squares to the provided number. It then eliminates half of the possible solutions in each iteration based on whether the square of the current number is greater than or equal to the input number. (It does this until it finds the largest integer square less than or equal to the input number then returns the current value of x). Thus, since it eliminates half of possible solutions in each loop, this the algorithm's time complexity is O(log(n)) where n is the input number.
 
 ## Space Complexity
 
