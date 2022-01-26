@@ -8,9 +8,21 @@ This solution utilizes a Trie data structure as prescribed.
 
 The time complexities for the individual Trie operations is defined below:
 
+### Constructors
+
+All constructors for the Trie and TrieNode consists of O(1) operations. (the number of steps in the operations does not vary with input size).
+
 ### insert
 
-The insert method calls the find method, if it does not find the input text, it iterates through each character of the input text and inserts it into the Trie. Thus the time complexity of this function is O(n). 
+The insert method calls the TrieNodes find method. If it does not find the input text, it iterates through each character of the input text and inserts it into the Trie. 
+
+All other operations and function calls such as: 
+- the TrieNode map_chr method.
+- the TrieNode insert method.
+- and other steps
+are O(1) operations because they all locate a dictionary element using its key.
+ 
+Thus the time complexity of this function is O(n). 
 
 ### find/contains
 
