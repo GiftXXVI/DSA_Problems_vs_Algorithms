@@ -53,14 +53,18 @@ Overall, the time complexity of the suffixes method is O(n\*m) or O(n^2).
 
 ## Space Complexity
 
-### insert
+### Trie methods
 
-The space complexity of insert is O(n) where n is the size of the input string.
+#### insert
 
-### find/contains
+The Trie insert method loops through all characters in the word, inserting them into the Trie. Since it creates a TrieNode for each character, Trie insert (including the call to TrieNode insert) has a time complexity of O(n) where n is the size of the input string.
 
-These methods have a space complexity of O(1) since they do not require any extra space to perform their search.
+#### find/contains
 
-### suffixes
+The Trie find and contains methods have a space complexity of O(1) since no additional data structures are created during the search.
 
-The suffixes method is recursive, with the number of function calls depending on the number of nodes of the current sub-Trie. Since each recursive call generates a new stack frame, the space complexity of the algorithm is O(n) where n is the number of sub-Tries of the node.
+### TrieNode methods
+
+#### suffixes
+
+The TrieNode suffixes method is recursive (it calls the TrieNode recursive method \_suffixes), with the number of function calls depending on the number of nodes of the current sub-Trie. Since each recursive call generates a new stack frame, the space complexity of the algorithm is O(n) where n is the number of sub-Tries of the node.
