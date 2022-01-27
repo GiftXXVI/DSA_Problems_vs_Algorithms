@@ -16,7 +16,7 @@ Since the function executes two subsequent functions, both of which have a time 
 
 ### lookup
 
-The lookup function also has a time complexity of O(n). This is because it calls the split_path function (which has a time complexity of O(n)) followed by a call to the find function of the Trie. 
+The lookup function also has a time complexity of O(n). This is because it calls the split_path function (which has a time complexity of O(n)) followed by a call to the find function of the Trie.
 
 The find function also has a time complexity of O(n) because it searches the children of a node (matching the current segment) for the next node (matching the next segment).
 
